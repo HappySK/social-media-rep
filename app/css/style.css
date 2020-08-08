@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+@font-face {
+  font-family: montserrat;
+  src: url("../fonts/Montserrat-SemiBold.ttf"); }
+body {
+  background-color: powderblue; }
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative; }
+  section #welcome-box {
+    width: 50%;
+    height: 70%;
+    border: 3px solid white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 1px 2px 4px black;
+    transition-duration: 0.3s; }
+    section #welcome-box h1 {
+      font-family: montserrat;
+      font-size: 300%; }
+    section #welcome-box #welcome-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 60%;
+      width: 100%; }
+      section #welcome-box #welcome-form button {
+        box-shadow: 1px 2px 4px black;
+        transition-duration: 0.3s;
+        cursor: pointer;
+        background-color: transparent;
+        width: 50%;
+        height: 15%;
+        font-size: 150%; }
+      section #welcome-box #welcome-form button:hover {
+        background-color: navajowhite;
+        outline: none;
+        border-radius: 30px; }
+
+.form {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  background-color: black;
+  height: 35vh;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 1px 2px 4px black;
+  transition-duration: 0.3s; }
+  .form #header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; }
+    .form #header span {
+      cursor: pointer;
+      font-size: 120%; }
+  .form input {
+    background-color: transparent;
+    border: 1px solid green;
+    border-radius: 20px;
+    height: 10%;
+    padding: 5px;
+    outline: none;
+    font-size: 120%;
+    width: 40%;
+    transition-property: width;
+    transition-duration: 0.25s;
+    color: white; }
+  .form input:focus {
+    width: 80%; }
+  .form #footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; }
+    .form #footer input {
+      height: 90%;
+      width: 120%;
+      cursor: pointer;
+      transition-property: background-color;
+      transition-duration: 0.25s; }
+    .form #footer input:hover {
+      background-color: limegreen;
+      color: white; }
+
+#reg-form {
+  height: 60%; }
+  #reg-form input {
+    height: 5%;
+    width: 50%; }
+  #reg-form input:focus {
+    width: 60%; }
+
+.modal {
+  display: none; }
+
+@media screen and (max-width: 433px) {
+  section #welcome-box {
+    width: 80%; }
+
+  .form {
+    width: 100%;
+    left: 0; } }
+
+/*# sourceMappingURL=style.css.map */

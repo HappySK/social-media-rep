@@ -1,0 +1,85 @@
+$(document).ready(function(){
+    $('#btn-reg').click(function(){
+        $('#reg-modal').show(200);
+    });
+    $('#reg-close').click(function(){
+        $('#reg-modal').hide(200);
+    });
+    $('#btn-login').click(function(){
+        $('#login-modal').show(200);
+    });
+    $('#log-close').click(function(){
+        $('#login-modal').hide(200);
+    });
+    $('#log-submit').click(function(){
+        flag=true;
+        $('#login-form').find('input[type="email"],input[type="password"]').each(function(){
+            if($(this).val()=='')
+            {
+                alert('Please '+$(this).attr('placeholder').toLowerCase());
+                flag=false;
+            }
+        });
+        if(flag)
+        {
+            ajax_handler('','',$('#lemail').val(),$('#lpwd').val(),'log');
+        }
+    });
+    $('#reg-submit').click(function(){
+        reg_flag=true;
+        $('#reg-form').find('input[type="text"],input[type="email"],input[type="password"]').each(function(){
+            if($(this).val()=='')
+            {
+                alert('Please '+$(this).attr('placeholder').toLowerCase());
+                reg_flag=false;
+            }
+        });
+        if($('#pwd').val()==$('#cpwd').val())
+        {
+            pass_match=true;
+        }
+        else
+        {
+            pass_match=false;
+            alert('Password Mismatch');
+        }
+        if(reg_flag && pass_match)
+        {
+            ajax_handler($('#fname').val(),$('#lname').val(),$('#email').val(),$('#cpwd').val(),'reg');
+        }
+    });
+    function ajax_handler(fname,lname,email,pwd,modal)
+    {
+        $.ajax({
+            type:'POST',
+            url:'../app/include/classes/ajax_check.php',
+            data:'fname='+fname+'&lname='+lname+'&email='+email+'&password='+pwd+'&modal='+modal,
+            success:function(data)
+            {
+               if(modal=='log')
+               {
+                    if(data)
+                    {
+                        $('#login-feedback').text(data);
+                    }
+                    else
+                    {
+                        window.location.href='../app/landing.php';
+                    }
+               }
+               else if(modal=='reg')
+               {
+                   if(data)
+                   {    
+                        $('#reg-feedback').text(data);
+                   }
+                   else
+                   {
+                        window.location.href='../app/landing.php';
+                   }
+               }
+            }
+        });
+        return true;
+    }
+});

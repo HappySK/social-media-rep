@@ -1,0 +1,168 @@
+*
+{
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+}
+@font-face
+{
+    font-family:montserrat;
+    src:url('../fonts/Montserrat-SemiBold.ttf');
+}
+@mixin box-shadow {
+    box-shadow:1px 2px 4px black;
+    transition-duration: 0.3s;
+}
+@mixin btns {
+    @include box-shadow();
+    
+    cursor: pointer;
+    background-color: transparent;
+}
+body
+{
+    background-color: powderblue;
+}
+section
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    position: relative;
+    #welcome-box
+    {
+        width:50%;
+        height:70%;
+        border:3px solid white;
+        border-radius: 20px;
+        display:flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items:center;
+        @include box-shadow();
+        h1
+        {
+            font-family: montserrat;
+            font-size: 300%;
+        }
+        #welcome-form
+        {
+            display:flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items:center;
+            height:60%;
+            width:100%;
+            button
+            {
+                @include btns();
+                width:50%;
+                height:15%;
+                font-size:150%;
+            }
+            button:hover
+            {
+                background-color: navajowhite;
+                outline: none;
+                border-radius: 30px;
+            }
+        }   
+    }
+}
+.form
+{
+    position: absolute;
+    top:25%;
+    left:30%;
+    background-color: black;
+    height:35vh;
+    width:40%;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-evenly;
+    color:white;
+    border-radius: 20px;
+    @include box-shadow();
+    #header
+    {
+        display:flex;
+        justify-content: space-around;
+        width:100%;
+        span
+        {
+            cursor: pointer;
+            font-size: 120%;
+        }
+    }
+    input
+    {
+        background-color: transparent;
+        border:1px solid green;
+        border-radius:20px;
+        height:10%;
+        padding:5px;
+        outline:none;
+        font-size:120%;
+        width:40%;
+        transition-property: width;
+        transition-duration: 0.25s;
+        color:white;
+    }
+    input:focus
+    {
+        width:80%;
+    }
+    #footer
+    {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        input
+        {
+            height:90%;
+            width:120%;
+            cursor: pointer;
+            transition-property: background-color;
+            transition-duration: 0.25s;
+        }
+        input:hover
+        {
+            background-color: limegreen;
+            color:white;
+        }
+    }
+}
+#reg-form
+{
+    height:60%;
+    input
+    {
+        height:5%;
+        width:50%;
+    }
+    input:focus
+    {
+        width:60%;
+    }
+}
+.modal
+{
+    display:none;
+}
+@media screen and (max-width:433px)
+{
+    section
+    {
+        #welcome-box
+        {
+            width:80%;
+        }
+    }
+    .form
+    {
+        width:100%;
+        left:0;
+    }
+}

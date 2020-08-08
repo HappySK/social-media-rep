@@ -1,0 +1,21 @@
+@font-face {
+  font-family: monsterrat-bold;
+  src: url("/app/fonts/Montserrat-ExtraBold.ttf"); }
+@font-face {
+  font-family: monsterrat;
+  src: url("/app/fonts/Montserrat-SemiBold.ttf"); }
+@font-face {
+  font-family: monsterrat-light;
+  src: url("/app/fonts/Montserrat-Light.ttf"); }
+* {
+  margin: 0;
+  padding: 0;
+  font-family: monsterrat-bold; }
+
+marquee {
+  line-height: 30px;
+  background-color: darkcyan;
+  color: wheat;
+  font-size: 200%; }
+
+/*# sourceMappingURL=welcome-style.css.map */

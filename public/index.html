@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media</title>
+    <link rel="stylesheet" href="../app/css/style.css">
+</head>
+<body>
+    <section>
+        <div id="welcome-box">
+            <h1>Welcome</h1>
+            <div id="welcome-form">
+                <button id="btn-login">Login</button>
+                <button id="btn-reg">Register</button>
+            </div>
+        </div>
+    </section>
+    <div class="modal" id="login-modal">
+        <form class="form" id="login-form" method="POST">
+            <div id="header">
+                <h1>Login</h1>
+                <span id="log-close">&times;</span>
+            </div>
+            <input type="email" id="lemail" autocomplete="off" placeholder="Enter your email ID">
+            <input type="password" id="lpwd" autocomplete="off" placeholder="Enter your password">
+            <div id="footer">
+                <input type="button" id="log-submit" value="submit">
+                <input type="reset">
+            </div>
+            <div id="login-feedback"></div>
+        </form>
+    </div>
+    <div class="modal" id="reg-modal">
+        <form class="form" id="reg-form" method="POST">
+            <div id="header">
+                <h1>Register</h1>
+                <span id="reg-close">&times;</span>
+            </div>
+            <input type="text" autocomplete="off" id="fname" name="fname" placeholder="Enter your firstname">
+            <input type="text" autocomplete="off" id="lname" name="lname" placeholder="Enter your lastname">
+            <input type="email"  autocomplete="off" id="email" name="email" placeholder="Enter your Email">
+            <input type="password"  autocomplete="off" name="password" id="pwd" placeholder="Enter your password">
+            <input type="password"  autocomplete="off" name="cpassword" id="cpwd" placeholder="Enter your Confirm Password">
+            <div id="footer">
+                <input type="button" id="reg-submit" value="Register">
+                <input type="reset" id="reg-reset">
+            </div>
+            <div id="reg-feedback"></div>
+        </form>
+    </div>
+    <script src="../app/js/jquery.js"></script>
+    <script src="../app/js/main.js"></script>
+</body>
+</html>
