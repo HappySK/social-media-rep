@@ -1,7 +1,7 @@
 <?php
 class register
 {
-    private $conn=null;
+    protected $conn=null;
 
     function __construct()
     {

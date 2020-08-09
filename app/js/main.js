@@ -52,7 +52,7 @@ $(document).ready(function(){
     {
         $.ajax({
             type:'POST',
-            url:'../app/include/classes/ajax_check.php',
+            url:'../app/include/ajax_handlers/ajax_check.php',
             data:'fname='+fname+'&lname='+lname+'&email='+email+'&password='+pwd+'&modal='+modal,
             success:function(data)
             {
@@ -60,22 +60,22 @@ $(document).ready(function(){
                {
                     if(data)
                     {
-                        $('#login-feedback').text(data);
+                        $('#login-feedback').htmllogi(data);
                     }
                     else
                     {
-                        window.location.href='../app/landing.php';
+                        window.location.href='../app/welcome.php';
                     }
                }
                else if(modal=='reg')
                {
                    if(data)
                    {    
-                        $('#reg-feedback').text(data);
+                        $('#reg-feedback').html(data);
                    }
                    else
                    {
-                        window.location.href='../app/landing.php';
+                        window.location.href='../app/welcome.php';
                    }
                }
             }

@@ -4,5 +4,5 @@
     {
         session_unset();
     }
-    echo "Logged out";
+    header('location:../public/index.html')
 ?>
