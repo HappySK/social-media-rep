@@ -19,17 +19,19 @@
     padding:0;
     font-family: monsterrat;
 }
-@mixin buttons {
+@mixin buttons($border-color,$color) {
     padding:5px 10px;
     cursor: pointer;
     background-color: transparent;
-    border:1px solid white;
+    border:1px solid $border-color;
     outline:none;
+    transition-duration: 0.3s;
     &:hover
     {
-        color:white;
+        color: $color;
         border-radius: 20px;
-        transition-duration: 0.5s;
+        transition-duration: 0.4s;
+        transition-timing-function: ease-out;
     }
 }
 @mixin box-shadow {
@@ -59,7 +61,7 @@ section
             a
             {
                 text-decoration: none;
-                @include buttons();
+                @include buttons($border-color:white,$color:white);
             }
         }
     }
@@ -70,6 +72,44 @@ section
         @include box-shadow();
         z-index:32;
         overflow: auto;
+        display:flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        div
+        {
+            #title
+            {
+                text-decoration: underline;
+                margin-top:20px;
+            }
+        }
+        #update_post
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            textarea
+            {
+                padding:3%;
+                border:1px solid grey;
+                border-radius: 20px;
+                outline:none;
+                height:10%;
+                transition-duration: 0.3s;
+                margin: 3%;
+            }
+            textarea:focus
+            {
+                height:50%;
+                transition-duration: 0.3s;
+            }
+            input
+            {
+                @include buttons(black,black );
+            }
+        }
     }
     #newsfeed
     {
@@ -78,6 +118,8 @@ section
         @include box-shadow();
         z-index:31;
         overflow: auto;
+        display: flex;
+        flex-direction: column;
     }
     #friend-request
     {
@@ -95,7 +137,7 @@ section
                                 'friend-request friend-request friend-request'
                                 'newsfeed newsfeed newsfeed';
         grid-template-rows: 0.3fr 2fr 2fr 3fr;
-        height: 200vh;
+        height:200vh;
         header,#profile,#newsfeed,#friend-request
         {
             overflow:auto;

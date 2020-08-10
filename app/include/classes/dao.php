@@ -5,7 +5,7 @@ class dao extends register
     {
         parent::__construct();
     }
-    function getData($id)
+    function getUserData($id)
     {
         $sql="SELECT * FROM reg_table WHERE `id`=:id";
         $stmt=$this->conn->prepare($sql);

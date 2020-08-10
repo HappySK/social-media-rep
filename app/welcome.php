@@ -7,7 +7,7 @@
         $config=['CLASS_PATH'=>constant('APPLICATION_PATH').ds.'include'.ds.'classes'.ds];
         require $config['CLASS_PATH'].'connect.php';
         require $config['CLASS_PATH'].'dao.php';
-        $data=$dao->getData($_SESSION['id']);
+        $user_data=$dao->getUserData($_SESSION['id']);
     }
 ?>
 <!DOCTYPE html>
@@ -21,24 +21,54 @@
 <body>
     <section>
         <header>
-            <marquee behavior="scroll" direction="left" scrollamount="20" onmouseover="this.stop()" onmouseout="this.start()">Welcome <?=$data->firstname?>  <a href="logout.php">Logout</a></marquee>
+            <marquee behavior="scroll" direction="left" scrollamount="20" onmouseover="this.stop()" onmouseout="this.start()">Welcome <?=$user_data->firstname?>  <a href="logout.php">Logout</a></marquee>
         </header>
         <div id="profile">
-            <h1>
-                <u>Profile</u>
-            </h1>
-            <h1><?=$data->firstname?></h1>           
+            <div>
+                <h1 id="title">
+                    Profile
+                </h1>
+            </div>
+            <div id="user_media">
+                <img src="../app/images/avatar_preset.png" alt="preset_avatar">
+                <h1><?=ucwords($user_data->firstname).' '.ucwords($user_data->lastname)?></h1>
+            </div>
+            <div id="update_post">
+                <h4>Post Your Update</h4>
+                <textarea name="current_status" id="" cols="30" rows="5" maxlength="100" placeholder="Hey, <?=ucwords($user_data->firstname)?> What's happening ?"></textarea>
+                <span>
+                    <input type="button" value="Post">
+                    <input type="reset" value="Cancel">
+                </span>
+                <p id="feedback"></p>
+            </div>     
+            <div id="my_posts">
+                <h1>My Posts</h1>
+                <ul id="contents">
+                    <?php
+                        
+                    ?>
+                </ul>
+            </div>  
         </div>
         <div id="newsfeed">
             <h1>
                 <u>Newsfeed</u>
             </h1>
+            <p>
+                
+            </p>
         </div>
         <div id="friend-request">
             <h1>
                 <u>Friend-requests</u>
             </h1>
+            <p>
+                
+            </p>
         </div>
     </section>
+    <script src="../app/js/jquery.js"></script>
+    <script src="../app/js/welcome_main.js"></script>
 </body>
 </html>
