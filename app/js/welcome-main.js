@@ -1,9 +1,21 @@
-msg=$('#status').val();
-query_string='id='+session_id+'&msg='+msg;
 $(document).ready(function(){
-    //ajax_posts(query_string);
-    alert(window.query_string);
+    if($('#status').val()==='')
+    {
+        query_string='id='+session_id+'&status=autoload';
+        ajax_posts(query_string);
+    } 
     $('#post').click(function(){
+        if($('#status').val()==='')
+        {
+            query_string='id='+session_id+'&status=autoload';
+            ajax_posts(query_string);
+        }
+        else
+        {
+            msg=$('#status').val();
+            query_string='id='+session_id+'&msg='+msg+'&status=load';
+            ajax_posts(query_string);
+        }
     });
 });
 function ajax_posts(query_string)
@@ -15,8 +27,12 @@ function ajax_posts(query_string)
         data:query_string,
         success:function(data)
         {
+            $('#contents').empty();
             $.each(data,function(index,item){
-                $('#contents').after('<p>'+item.message+' '+item.date+'</p>');
+                var node = document.createElement('p');
+                var textnode = document.createTextNode(item.message+' | '+item.date);
+                node.appendChild(textnode);
+                document.getElementById('contents').appendChild(node);
             });
         }
     });

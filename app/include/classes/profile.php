@@ -14,11 +14,11 @@
                 $stmt=$this->conn->prepare($sql);
                 $stmt->bindParam(':id',$id);
                 $stmt->bindParam(':msg',$msg);
-                $date=date('Y-m-d');
+                $date=date('Y-m-d H:i:s');
                 $stmt->bindParam(':date',$date);
                 if($stmt->execute())
                 {
-                    $this->getUserPosts($id);
+                    
                 }
                 else
                 {
@@ -32,10 +32,10 @@
         }
         function getUserPosts($id)
         {
-            $sql="SELECT * FROM posts WHERE `id`=:id";
+            $sql="SELECT * FROM posts WHERE `id`=:id ORDER BY date DESC";
             $stmt=$this->conn->prepare($sql);
             $stmt->bindParam(':id',$id);
-            if($stmt->execute())
+            if($stmt->execute()&&$stmt->rowCount()>0)
             {
                 $json_data=array();
                 while($row=$stmt->fetchObject())
@@ -53,13 +53,40 @@
         }
     }
     $profile=new profile();
-    if(isset($_POST['id'])&&isset($_POST['msg']))
+    if(isset($_POST['status']))
     {
-        if(!empty($_POST['id'])&&!empty($_POST['msg']))
+        if(!empty($_POST['status']))
         {
-            $id=$_POST['id'];
-            $msg=$_POST['msg'];
-            $profile->insertMessage($id,$msg);
+            switch($_POST['status'])
+            {
+                case 'load':load($profile);
+                case 'autoload':autoload($profile);
+                                break;
+                default: echo "Invalid Choice selected";
+            }
+        }
+    }
+    function load($profile)
+    {
+        if(isset($_POST['id'])&&isset($_POST['msg']))
+        {
+            if(!empty($_POST['id'])&&!empty($_POST['msg']))
+            {
+                $id=$_POST['id'];
+                $msg=$_POST['msg'];
+                $profile->insertMessage($id,$msg);
+            }
+        }
+    }
+    function autoload($profile)
+    {
+        if(isset($_POST['id']))
+        {
+            if(!empty($_POST['id']))
+            {
+                $id=$_POST['id'];
+                $profile->getUserPosts($id);
+            }
         }
     }
 ?>

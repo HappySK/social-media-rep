@@ -46,6 +46,7 @@
             <div id="my_posts">
                 <h1>My Posts</h1>
                 <ul id="contents">
+                    
                 </ul>
             </div>  
         </div>
