@@ -81,6 +81,13 @@ section {
           border-radius: 20px;
           transition-duration: 0.4s;
           transition-timing-function: ease-out; }
+    section #profile #my_posts {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly; }
+      section #profile #my_posts #contents {
+        text-align: left;
+        list-style-type: none; }
   section #newsfeed {
     background-color: powderblue;
     grid-area: newsfeed;
