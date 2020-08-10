@@ -110,6 +110,16 @@ section
                 @include buttons(black,black );
             }
         }
+        #my_posts
+        {
+            display:flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            #contents
+            {
+                text-align:left;
+            }
+        }
     }
     #newsfeed
     {

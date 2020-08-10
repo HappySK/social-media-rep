@@ -8,6 +8,7 @@
         require $config['CLASS_PATH'].'connect.php';
         require $config['CLASS_PATH'].'dao.php';
         $user_data=$dao->getUserData($_SESSION['id']);
+        setcookie('session',$_SESSION['id']);
     }
 ?>
 <!DOCTYPE html>
@@ -35,9 +36,9 @@
             </div>
             <div id="update_post">
                 <h4>Post Your Update</h4>
-                <textarea name="current_status" id="" cols="30" rows="5" maxlength="100" placeholder="Hey, <?=ucwords($user_data->firstname)?> What's happening ?"></textarea>
+                <textarea name="current_status" id="status" cols="30" rows="5" maxlength="100" placeholder="Hey, <?=ucwords($user_data->firstname)?> What's happening ?"></textarea>
                 <span>
-                    <input type="button" value="Post">
+                    <input type="button" id="post" value="Post">
                     <input type="reset" value="Cancel">
                 </span>
                 <p id="feedback"></p>
@@ -45,9 +46,6 @@
             <div id="my_posts">
                 <h1>My Posts</h1>
                 <ul id="contents">
-                    <?php
-                        
-                    ?>
                 </ul>
             </div>  
         </div>
@@ -69,6 +67,7 @@
         </div>
     </section>
     <script src="../app/js/jquery.js"></script>
-    <script src="../app/js/welcome_main.js"></script>
+    <script>var session_id=<?=$_SESSION['id']?></script>
+    <script src="../app/js/welcome-main.js"></script>
 </body>
 </html>
