@@ -19,6 +19,10 @@ $(document).ready(function(){
         }
     });
     ajax_newsfeed(session_id);
+    ajax_suggestions(session_id);
+    $('.btns').click(function(){
+        alert('Working');
+    });
 });
 function ajax_posts(query_string)
 {
@@ -75,5 +79,33 @@ function ajax_newsfeed(session_id)
                 li.classList.add("newsfeed_data")
             });
         }
+    });
+}
+function ajax_suggestions(session_id)
+{
+    $('#suggestions').click(function(){
+        $.ajax({
+            url:'../app/include/classes/suggestions.php',
+            type:'POST',
+            data:'id='+session_id,
+            dataType:'JSON',
+            success:function(data)
+            {
+                $.each(data,function(index,item){
+                    var div=document.createElement('div');
+                    var fullname=item.firstname+' '+item.lastname;
+                    var h3=document.createElement('h3');
+                    var name=document.createTextNode(fullname);
+                    var input_add=document.createElement('input');
+                    input_add.setAttribute('type','button');
+                    input_add.setAttribute('value','Add Friend');
+                    h3.appendChild(name);
+                    div.appendChild(h3);
+                    div.appendChild(input_add);
+                    input_add.classList.add("btns");
+                    document.getElementById('friend-suggestions').appendChild(div);
+                });
+            }
+        });
     });
 }

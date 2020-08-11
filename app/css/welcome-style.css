@@ -152,6 +152,21 @@ section {
     section #friend-request #friends:checked ~ .disp-friends, section #friend-request #requests:checked ~ .disp-requests, section #friend-request #suggestions:checked ~ .disp-suggestions {
       display: block;
       transition-duration: 0.3s; }
+    section #friend-request #friend-suggestions {
+      display: flex;
+      flex-direction: column; }
+      section #friend-request #friend-suggestions .btns {
+        padding: 5px 10px;
+        cursor: pointer;
+        background-color: transparent;
+        border: 1px solid black;
+        outline: none;
+        transition-duration: 0.3s; }
+        section #friend-request #friend-suggestions .btns:hover {
+          color: maroon;
+          border-radius: 20px;
+          transition-duration: 0.4s;
+          transition-timing-function: ease-out; }
 
 @media only screen and (max-width: 450px) {
   section {

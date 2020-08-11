@@ -215,6 +215,15 @@ section
             display: block;
             transition-duration: 0.3s;
         }
+        #friend-suggestions
+        {
+            display:flex;
+            flex-direction: column;
+            .btns
+            {
+                @include buttons(black,maroon )
+            }
+        }
 
     }
 }

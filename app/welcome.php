@@ -79,6 +79,9 @@
                 <input type="radio" name="tabs" id="suggestions" hidden>
                 <div class="disp-suggestions">
                     Suggestions section
+                    <div id="friend-suggestions">
+                        
+                    </div>
                 </div>
             </div>
         </div>
