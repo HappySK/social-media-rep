@@ -96,14 +96,9 @@ section
                 border:1px solid grey;
                 border-radius: 20px;
                 outline:none;
-                height:10%;
-                transition-duration: 0.3s;
-                margin: 3%;
-            }
-            textarea:focus
-            {
                 height:50%;
                 transition-duration: 0.3s;
+                margin: 3%;
             }
             input
             {

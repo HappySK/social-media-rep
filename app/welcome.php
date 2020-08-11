@@ -37,10 +37,10 @@
             <div id="update_post">
                 <h4>Post Your Update</h4>
                 <textarea name="current_status" id="status" cols="30" rows="5" maxlength="100" placeholder="Hey, <?=ucwords($user_data->firstname)?> What's happening ?"></textarea>
-                <span>
-                    <input type="button" id="post" value="Post">
-                    <input type="reset" value="Cancel">
-                </span>
+                    <span>
+                        <input type="button" id="post" value="Post">
+                        <input type="reset" value="Cancel">
+                    </span>
                 <p id="feedback"></p>
             </div>     
             <div id="my_posts">

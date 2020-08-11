@@ -15,6 +15,7 @@ $(document).ready(function(){
             msg=$('#status').val();
             query_string='id='+session_id+'&msg='+msg+'&status=load';
             ajax_posts(query_string);
+            $('#status').val('');
         }
     });
 });
