@@ -30,10 +30,18 @@ function ajax_posts(query_string)
         {
             $('#contents').empty();
             $.each(data,function(index,item){
-                var node = document.createElement('p');
-                var textnode = document.createTextNode(item.message+' | '+item.date);
-                node.appendChild(textnode);
-                document.getElementById('contents').appendChild(node);
+                var li=document.createElement('li');
+                var h3=document.createElement('h3');
+                var cite=document.createElement('cite');
+                var hr = document.createElement('hr');
+                var message=document.createTextNode(item.message);
+                var date=document.createTextNode(item.date);
+                h3.appendChild(message);
+                cite.appendChild(date);
+                li.appendChild(h3);
+                li.appendChild(cite);
+                li.appendChild(hr);
+                document.getElementById('contents').appendChild(li);
             });
         }
     });

@@ -42,7 +42,8 @@
                         <input type="reset" value="Cancel">
                     </span>
                 <p id="feedback"></p>
-            </div>     
+            </div>
+            <br>     
             <div id="my_posts">
                 <h1>My Posts</h1>
                 <ul id="contents">
