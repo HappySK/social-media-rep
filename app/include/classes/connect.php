@@ -40,13 +40,22 @@ class register
     {
         try
         {
-            $sql="INSERT INTO reg_table(`firstname`,`lastname`,`email`,`password`) VALUES(:fname,:lname,:email,:pwd)";
+            $sql="INSERT INTO reg_table(`id`,`firstname`,`lastname`,`email`,`password`) VALUES(:id,:fname,:lname,:email,:pwd)";
             $stmt=$this->conn->prepare($sql);
+            $stmt->bindParam(':id',$data['id']);
             $stmt->bindParam(':fname',$data['firstname']);
             $stmt->bindParam(':lname',$data['lastname']);
             $stmt->bindParam(':email',$data['email']);
             $stmt->bindParam(':pwd',$data['password']);
-            $result=$stmt->execute();            
+            if($stmt->execute())
+            {
+                session_start();
+                $_SESSION['id']=$data['id'];
+            }    
+            else
+            {
+                echo "Something Went Wrong Please try again later";
+            }        
         }
         catch(PDOException $e)
         {

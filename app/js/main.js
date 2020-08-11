@@ -60,7 +60,7 @@ $(document).ready(function(){
                {
                     if(data)
                     {
-                        $('#login-feedback').htmllogi(data);
+                        $('#login-feedback').html(data);
                     }
                     else
                     {

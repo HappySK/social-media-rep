@@ -8,7 +8,6 @@
         require $config['CLASS_PATH'].'connect.php';
         require $config['CLASS_PATH'].'dao.php';
         $user_data=$dao->getUserData($_SESSION['id']);
-        setcookie('session',$_SESSION['id']);
     }
 ?>
 <!DOCTYPE html>
@@ -22,7 +21,7 @@
 <body>
     <section>
         <header>
-            <marquee behavior="scroll" direction="left" scrollamount="20" onmouseover="this.stop()" onmouseout="this.start()">Welcome <?=$user_data->firstname?>  <a href="logout.php">Logout</a></marquee>
+            <marquee behavior="scroll" direction="left" scrollamount="20" onmouseover="this.stop()" onmouseout="this.start()">Welcome <?=ucwords($user_data->firstname)?>  <a href="logout.php">Logout</a></marquee>
         </header>
         <div id="profile">
             <div>
@@ -53,19 +52,35 @@
         </div>
         <div id="newsfeed">
             <h1>
-                <u>Newsfeed</u>
+                Newsfeed
             </h1>
-            <p>
-                
-            </p>
+            <ul id="newsfeed_contents">
+
+            </ul>
         </div>
         <div id="friend-request">
             <h1>
-                <u>Friend-requests</u>
+                Friend Request
             </h1>
-            <p>
-                
-            </p>
+            <div id="tabs">
+                <label for="friends">Friends</label>
+                <label for="requests">Request</label>
+                <label for="suggestions">Suggestions</label>
+            </div>
+            <div id="tab-contents">
+                <input type="radio" name="tabs" id="friends" checked hidden>
+                <div class="disp-friends">
+                    Friends Section
+                </div>
+                <input type="radio" name="tabs" id="requests" hidden>
+                <div class="disp-requests">
+                    Requests Section
+                </div>
+                <input type="radio" name="tabs" id="suggestions" hidden>
+                <div class="disp-suggestions">
+                    Suggestions section
+                </div>
+            </div>
         </div>
     </section>
     <script src="../app/js/jquery.js"></script>

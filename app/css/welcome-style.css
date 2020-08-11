@@ -91,6 +91,8 @@ section {
         flex-direction: column;
         justify-content: space-evenly;
         cursor: pointer; }
+        section #profile #my_posts #contents li {
+          padding: 3%; }
         section #profile #my_posts #contents li:hover {
           background-color: grey;
           transition-duration: 0.3s; }
@@ -102,10 +104,54 @@ section {
     overflow: auto;
     display: flex;
     flex-direction: column; }
+    section #newsfeed h1 {
+      text-decoration: underline;
+      margin-top: 3%; }
+    section #newsfeed #newsfeed_contents {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      list-style: none; }
+      section #newsfeed #newsfeed_contents .newsfeed_data {
+        border: 1px solid white;
+        border-radius: 20px;
+        padding: 5%;
+        margin: 3%;
+        width: 60%;
+        cursor: pointer;
+        transition-property: all;
+        transition-duration: 0.3s; }
+      section #newsfeed #newsfeed_contents .newsfeed_data:hover {
+        box-shadow: 1px 2px 3px black;
+        width: 80%;
+        transition-duration: 0.5s; }
   section #friend-request {
     background-color: white;
     grid-area: friend-request;
     overflow: auto; }
+    section #friend-request h1 {
+      text-decoration: underline;
+      margin-top: 5%; }
+    section #friend-request #tabs {
+      margin-top: 5%;
+      display: flex;
+      justify-content: space-evenly;
+      background-color: maroon;
+      color: white; }
+      section #friend-request #tabs label {
+        cursor: pointer; }
+      section #friend-request #tabs label:hover {
+        background-color: white;
+        color: maroon;
+        transition-duration: 0.3s; }
+    section #friend-request #tab-contents {
+      margin-top: 5%; }
+    section #friend-request .disp-friends, section #friend-request .disp-requests, section #friend-request .disp-suggestions {
+      display: none; }
+    section #friend-request #friends:checked ~ .disp-friends, section #friend-request #requests:checked ~ .disp-requests, section #friend-request #suggestions:checked ~ .disp-suggestions {
+      display: block;
+      transition-duration: 0.3s; }
 
 @media only screen and (max-width: 450px) {
   section {
