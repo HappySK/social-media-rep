@@ -23,16 +23,64 @@
             }
             echo json_encode($data);
         }
-        function addFriend($fid,$uid)
+        function addFriend($s_id,$r_id)
         {
-            $sql="INSERT INTO friend_requests(`user_id`,`friend_id`)VALUES(:uid,:fid)";
+            $sql="INSERT INTO friend_requests(`sender_id`,`receiver_id`)VALUES(:uid,:fid)";
             $stmt=$this->conn->prepare($sql);
-            $stmt->bindParam(':uid',$uid);
-            $stmt->bindParam(':fid',$fid);
+            $stmt->bindParam(':uid',$s_id);
+            $stmt->bindParam(':fid',$r_id);
             if(!$stmt->execute())
             {
                 echo "Something went wrong";
             }
+        }
+        function not_friends($s_id,$r_id)
+        {
+            $sql="SELECT * FROM friend_requests WHERE `sender_id`=:s_id AND `receiver_id`=:r_id AND `status`=:states";
+            $stmt=$this->conn->prepare($sql);
+            $stmt->bindParam(':s_id',$s_id);
+            $stmt->bindParam(':r_id',$r_id);
+            $stmt->bindValue(':states','not_friends');
+            if($stmt->execute()&&$stmt->rowCount()>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        function isRequestSent($s_id,$r_id)
+        {
+            $sql="SELECT * FROM friend_requests WHERE `sender_id`=:s_id AND `receiver_id`=:r_id AND `status`=:states";
+            $stmt=$this->conn->prepare($sql);
+            $stmt->bindParam(':s_id',$s_id);
+            $stmt->bindParam(':r_id',$r_id);
+            $stmt->bindValue(':states','requested');
+            if($stmt->execute()&&$stmt->rowCount()>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        function isAlreadyFriends($s_id,$r_id)
+        {
+            $sql="SELECT * FROM friend_requests WHERE `sender_id`=:s_id AND `receiver_id`=:r_id AND `status`=:states";
+            $stmt=$this->conn->prepare($sql);
+            $stmt->bindParam(':s_id',$s_id);
+            $stmt->bindParam(':r_id',$r_id);
+            $stmt->bindValue(':states','friends');
+            if($stmt->execute()&&$stmt->rowCount()>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }   
         }
     }
     $suggestions=new suggestions();
@@ -43,11 +91,29 @@
             $suggestions->getFriendsData($_POST['id']);
         }
     }
-    if(isset($_POST['f_id'])&&isset($_POST['u_id']))
+    if(isset($_POST['sender_id'])&&isset($_POST['receiver_id']))
     {
-        if(!empty($_POST['f_id'])&&!empty($_POST['u_id']))
+        if(!empty($_POST['sender_id'])&&!empty($_POST['receiver_id']))
         {
-            $suggestions->addFriend($_POST['f_id'],$_POST['u_id']);
+            $suggestions->addFriend($_POST['sender_id'],$_POST['receiver_id']);
+        }
+    }
+    if(isset($_GET['section'])&&isset($_GET['sender_id'])&&isset($_GET['receiver_id']))
+    {
+        if(!empty($_GET['section'])&&!empty($_GET['sender_id'])&&!empty($_GET['receiver_id']))
+        {
+            if($suggestions->not_friends($_GET['sender_id'],$_GET['receiver_id']))
+            {
+                echo "Add Friends";
+            }
+            else if($suggestions->isAlreadyFriends($_GET['sender_id'],$_GET['receiver_id']))
+            {
+                echo "Continue";
+            }
+            else if($suggestions->isRequestSent($_GET['sender_id'],$_GET['receiver_id']))
+            {
+                echo "Cancel";
+            }
         }
     }
 ?>

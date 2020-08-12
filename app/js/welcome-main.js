@@ -20,15 +20,11 @@ $(document).ready(function(){
     });
     ajax_newsfeed(session_id);
     ajax_suggestions(session_id);
-    $(document).on('click','.btns',function(){
-        if($(this).val()=='Add Friend')
+    $(document).on("click",'.btns',function(){
+        if($(this).val()=="Add Friends")
         {
-            $(this).val('Cancel');
-            $.post('../app/include/classes/suggestions.php','f_id='+$(this).attr('session')+'&u_id='+session_id);
-        }
-        else if($(this).val()=='Cancel')
-        {
-            $(this).val('Add Friend');
+            $.post('../app/include/classes/suggestions.php','sender_id='+session_id+'&receiver_id='+$(this).attr('session'));
+            $(this).val("Cancel");
         }
     });
 });
@@ -107,7 +103,14 @@ function ajax_suggestions(session_id)
                     var name=document.createTextNode(fullname);
                     var inputadd=document.createElement("input");
                     inputadd.setAttribute("type","button");
-                    inputadd.setAttribute("value","Add Friend");
+                    if(val=suggestion(session_id,item.id))
+                    {
+                        inputadd.setAttribute("value",val);
+                    }
+                    else
+                    {
+                        inputadd.setAttribute("value","Add Friend");
+                    }
                     inputadd.setAttribute("class","btns");
                     inputadd.setAttribute('session',item.id);
                     h3.appendChild(name);
@@ -117,5 +120,21 @@ function ajax_suggestions(session_id)
                 });
             }
         });
+        
     });
+}
+function suggestion(session_id,friend_id)
+{
+    $.ajax({
+        url:'../app/include/classes/suggestions.php',
+        type:'GET',
+        dataType:'html',
+        async:false,
+        data:'section=suggestions'+'&sender_id='+session_id+'&receiver_id='+friend_id,
+        success:function(data)
+        {
+            result=data;
+        }
+    });
+    return result;
 }
