@@ -20,8 +20,16 @@ $(document).ready(function(){
     });
     ajax_newsfeed(session_id);
     ajax_suggestions(session_id);
-    $('.btns').click(function(){
-        alert('Working');
+    $(document).on('click','.btns',function(){
+        if($(this).val()=='Add Friend')
+        {
+            $(this).val('Cancel');
+            $.post('../app/include/classes/suggestions.php','f_id='+$(this).attr('session')+'&u_id='+session_id);
+        }
+        else if($(this).val()=='Cancel')
+        {
+            $(this).val('Add Friend');
+        }
     });
 });
 function ajax_posts(query_string)
@@ -91,19 +99,21 @@ function ajax_suggestions(session_id)
             dataType:'JSON',
             success:function(data)
             {
+                $('#friend-suggestions').empty();
                 $.each(data,function(index,item){
-                    var div=document.createElement('div');
+                    var div=document.createElement("div");
                     var fullname=item.firstname+' '+item.lastname;
-                    var h3=document.createElement('h3');
+                    var h3=document.createElement("h3");
                     var name=document.createTextNode(fullname);
-                    var input_add=document.createElement('input');
-                    input_add.setAttribute('type','button');
-                    input_add.setAttribute('value','Add Friend');
+                    var inputadd=document.createElement("input");
+                    inputadd.setAttribute("type","button");
+                    inputadd.setAttribute("value","Add Friend");
+                    inputadd.setAttribute("class","btns");
+                    inputadd.setAttribute('session',item.id);
                     h3.appendChild(name);
                     div.appendChild(h3);
-                    div.appendChild(input_add);
-                    input_add.classList.add("btns");
-                    document.getElementById('friend-suggestions').appendChild(div);
+                    div.appendChild(inputadd);
+                    document.getElementById("friend-suggestions").appendChild(div);
                 });
             }
         });
