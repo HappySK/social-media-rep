@@ -25,12 +25,14 @@
     background-color: transparent;
     border:1px solid $border-color;
     outline:none;
+    transition-property: all;
     transition-duration: 0.3s;
     &:hover
     {
         color: $color;
         border-radius: 20px;
         transition-duration: 0.4s;
+        transition-property: all;
         transition-timing-function: ease-out;
     }
 }

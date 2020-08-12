@@ -35,11 +35,13 @@ section {
         background-color: transparent;
         border: 1px solid white;
         outline: none;
+        transition-property: all;
         transition-duration: 0.3s; }
         section header marquee a:hover {
           color: white;
           border-radius: 20px;
           transition-duration: 0.4s;
+          transition-property: all;
           transition-timing-function: ease-out; }
   section #profile {
     grid-area: profile;
@@ -72,11 +74,13 @@ section {
         background-color: transparent;
         border: 1px solid black;
         outline: none;
+        transition-property: all;
         transition-duration: 0.3s; }
         section #profile #update_post input:hover {
           color: black;
           border-radius: 20px;
           transition-duration: 0.4s;
+          transition-property: all;
           transition-timing-function: ease-out; }
     section #profile #my_posts {
       display: flex;
@@ -161,11 +165,13 @@ section {
         background-color: transparent;
         border: 1px solid black;
         outline: none;
+        transition-property: all;
         transition-duration: 0.3s; }
         section #friend-request #friend-suggestions .btns:hover {
           color: maroon;
           border-radius: 20px;
           transition-duration: 0.4s;
+          transition-property: all;
           transition-timing-function: ease-out; }
 
 @media only screen and (max-width: 450px) {
