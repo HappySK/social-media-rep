@@ -18,7 +18,7 @@ $(document).ready(function(){
             $('#status').val('');
         }
     });
-    ajax_newsfeed(session_id);
+    ajax_newsfeed(session_id); /* This function is called in order to retrieve the posts updated by other users */
     ajax_suggestions(session_id);
     $(document).on("click",'.btns',function(){
         if($(this).val()=="Add Friend")

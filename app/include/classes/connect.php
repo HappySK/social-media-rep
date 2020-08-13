@@ -7,7 +7,7 @@ class register
     {
         try
         {
-            $this->conn=new PDO('mysql:host=localhost;dbname=socialreplicate;charset=utf8','root','');
+            $this->conn=new PDO('mysql:host=localhost;dbname=social-media-replication;charset=utf8','root','');
         }
         catch(PDOException $e)
         {
