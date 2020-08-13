@@ -156,6 +156,23 @@ section {
     section #friend-request #friends:checked ~ .disp-friends, section #friend-request #requests:checked ~ .disp-requests, section #friend-request #suggestions:checked ~ .disp-suggestions {
       display: block;
       transition-duration: 0.3s; }
+    section #friend-request #friend-requests div {
+      margin: 2%; }
+      section #friend-request #friend-requests div span .req-btns {
+        padding: 5px 10px;
+        cursor: pointer;
+        background-color: transparent;
+        border: 1px solid black;
+        outline: none;
+        transition-property: all;
+        transition-duration: 0.3s;
+        margin: 1%; }
+        section #friend-request #friend-requests div span .req-btns:hover {
+          color: maroon;
+          border-radius: 20px;
+          transition-duration: 0.4s;
+          transition-property: all;
+          transition-timing-function: ease-out; }
     section #friend-request #friend-suggestions {
       display: flex;
       flex-direction: column; }
@@ -173,6 +190,8 @@ section {
           transition-duration: 0.4s;
           transition-property: all;
           transition-timing-function: ease-out; }
+    section #friend-request #friends-section {
+      cursor: pointer; }
 
 @media only screen and (max-width: 450px) {
   section {

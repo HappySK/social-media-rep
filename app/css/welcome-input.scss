@@ -217,6 +217,21 @@ section
             display: block;
             transition-duration: 0.3s;
         }
+        #friend-requests
+        {
+            div
+            {
+                margin:2%;
+                span
+                {
+                    .req-btns
+                    {
+                        @include buttons(black,maroon );
+                        margin:1%;
+                    }
+                }
+            }
+        }
         #friend-suggestions
         {
             display:flex;
@@ -226,9 +241,14 @@ section
                 @include buttons(black,maroon )
             }
         }
+        #friends-section
+        {
+            cursor:pointer;
+        }
 
     }
 }
+
 @media only screen and (max-width:450px)
 {
     section

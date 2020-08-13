@@ -70,11 +70,16 @@
             <div id="tab-contents">
                 <input type="radio" name="tabs" id="friends" checked hidden>
                 <div class="disp-friends">
-                    Friends Section
+                    <div id="friends-section">
+                        
+                    </div>
                 </div>
                 <input type="radio" name="tabs" id="requests" hidden>
                 <div class="disp-requests">
                     Requests Section
+                    <div id="friend-requests">
+
+                    </div>
                 </div>
                 <input type="radio" name="tabs" id="suggestions" hidden>
                 <div class="disp-suggestions">

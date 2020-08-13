@@ -25,10 +25,23 @@
         }
         function addFriend($s_id,$r_id)
         {
-            $sql="INSERT INTO friend_requests(`sender_id`,`receiver_id`)VALUES(:uid,:fid)";
+            $sql="INSERT INTO friend_requests(`sender_id`,`receiver_id`,`status`)VALUES(:uid,:fid,:status)";
             $stmt=$this->conn->prepare($sql);
             $stmt->bindParam(':uid',$s_id);
             $stmt->bindParam(':fid',$r_id);
+            $stmt->bindValue(':status','requested');
+            if(!$stmt->execute())
+            {
+                echo "Something went wrong";
+            }
+        }
+        function deleteFriend($s_id,$r_id)
+        {
+            $sql="DELETE FROM friend_requests WHERE `sender_id`=:s_id AND `receiver_id`=:r_id AND `status`=:status";
+            $stmt=$this->conn->prepare($sql);
+            $stmt->bindParam(':s_id',$s_id);
+            $stmt->bindParam(':r_id',$r_id);
+            $stmt->bindValue(':status','requested');
             if(!$stmt->execute())
             {
                 echo "Something went wrong";
@@ -68,7 +81,7 @@
         }
         function isAlreadyFriends($s_id,$r_id)
         {
-            $sql="SELECT * FROM friend_requests WHERE `sender_id`=:s_id AND `receiver_id`=:r_id AND `status`=:states";
+            $sql="SELECT * FROM friend_requests WHERE (`sender_id`=:s_id AND `receiver_id`=:r_id) OR (`sender_id`=:r_id AND `receiver_id`=:s_id) AND `status`=:states";
             $stmt=$this->conn->prepare($sql);
             $stmt->bindParam(':s_id',$s_id);
             $stmt->bindParam(':r_id',$r_id);
@@ -91,11 +104,18 @@
             $suggestions->getFriendsData($_POST['id']);
         }
     }
-    if(isset($_POST['sender_id'])&&isset($_POST['receiver_id']))
+    if(isset($_POST['action'])&&isset($_POST['sender_id'])&&isset($_POST['receiver_id']))
     {
-        if(!empty($_POST['sender_id'])&&!empty($_POST['receiver_id']))
+        if(!empty($_POST['action'])&&!empty($_POST['sender_id'])&&!empty($_POST['receiver_id']))
         {
-            $suggestions->addFriend($_POST['sender_id'],$_POST['receiver_id']);
+            if($_POST['action']=='insert')
+            {
+                $suggestions->addFriend($_POST['sender_id'],$_POST['receiver_id']);
+            }
+            else if($_POST['action']=='delete')
+            {
+                $suggestions->deleteFriend($_POST['sender_id'],$_POST['receiver_id']);
+            }
         }
     }
     if(isset($_GET['section'])&&isset($_GET['sender_id'])&&isset($_GET['receiver_id']))
@@ -104,7 +124,7 @@
         {
             if($suggestions->not_friends($_GET['sender_id'],$_GET['receiver_id']))
             {
-                echo "Add Friends";
+                echo "Add Friend";
             }
             else if($suggestions->isAlreadyFriends($_GET['sender_id'],$_GET['receiver_id']))
             {
